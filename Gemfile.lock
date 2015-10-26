@@ -1,0 +1,24 @@
+GIT
+  remote: https://github.com/blacklane/diplomat
+  revision: 648dc3cb63e7495f01af8242ee0cae8aee1ccc98
+  specs:
+    diplomat (0.14.0)
+      faraday (~> 0.9)
+      json (~> 1.8)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (0.9.2)
+      multipart-post (>= 1.2, < 3)
+    json (1.8.3)
+    multipart-post (2.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  diplomat!
+
+BUNDLED WITH
+   1.10.6

@@ -1,0 +1,82 @@
+= Simple consul manager
+
+== Functionality
+
+* Seeds data to the consul
+* Dumps consul KV to the file
+* Restores Consul KV from the file
+* Dumps consul ACL
+
+
+== Prerequisites
+
+Configure consul credentials:
+
+[source, bash]
+------
+$ export CONSUL_URI=consul.example.com:443    # your real consul uri
+$ export CONSUL_TOKEN=00000-00000-00000-00000 # your real consul token
+------
+
+== Usage
+
+=== Seed data
+
+. Place yml file with seeding data to the data/my_cool_data.yml
+. Run command:
++
+[source, bash]
+------
+$ bin/kv_seed.rb data/my_cool_data.yml
+------
+
+Seed file sample
+
+[source, yml]
+----------
+---
+namespace: developmet/cactus/env # path
+data:
+  API_KEY_TEST: 00000000-0000-0000-0000-000000000000
+  API_KEY_INTERNAL: 00000000-0000-0000-0000-000000000000
+  API_KEY_CACTUS: 00000000-0000-0000-0000-000000000000
+  API_KEY_IPHONE_PASSENGER: 00000000-0000-0000-0000-000000000000
+  API_KEY_ANDROID_PASSENGER: 00000000-0000-0000-0000-000000000000
+  # and so on ...
+----------
+
+=== Dump existing KV data to the file
+
+. Run command:
++
+[source, bash]
+------
+$ bin/kv_dump.rb
+------
+
+. The dumped data will be located in dump/kv/consul-kv-<TIMESTAMP>.yml file.
+
+
+=== Restore KV values
+
+. Run command
++
+[source, bash]
+------
+$ bin/kv_restore.rb dump/kv/consul-kv-<TIMESTAMP>.yml
+------
+
+NOTE: this process does not destroy values not listed in the dump during restore.
+
+=== Dump existing ACL data to the file
+
+. Run command:
++
+[source, bash]
+------
+$ bin/acl_dump.rb
+------
+
+. The dumped data will be located in dump/acl/consul-acl-<TIMESTAMP>.yml file.
+
+IMPORTANT: ACL restore is not supported by Consul yet.
